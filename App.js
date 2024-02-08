@@ -4,8 +4,46 @@ import { loadAsync } from "expo-font";
 
 import CardTask from "./components/CardTask";
 import Divider from "./components/Divider";
+import AddIconButton from "./components/AddIconButton";
 
 export default function App() {
+  console.log("App started");
+
+  const tasks = [
+    {
+      id: 1,
+      title: "Tarea 1",
+      description: "Descripción de la tarea 1",
+      date: "2021-10-10",
+    },
+    {
+      id: 2,
+      title: "Tarea 2",
+      description: "Descripción de la tarea 2",
+      date: "2021-10-11",
+      completed: true,
+    },
+    {
+      id: 3,
+      title: "Tarea 3",
+      description: "Descripción de la tarea 3",
+      date: "2021-10-12",
+      completed: true,
+    },
+    {
+      id: 4,
+      title: "Tarea 4",
+      description: "Descripción de la tarea 4",
+      date: "2021-10-13",
+    },
+    {
+      id: 5,
+      title: "Tarea 5",
+      description: "Descripción de la tarea 5",
+      date: "2021-10-14",
+    },
+  ];
+
   loadAsync({
     "DMSans-Black": require("./assets/fonts/DMSans-Black.ttf"),
     "DMSans-Bold": require("./assets/fonts/DMSans-Bold.ttf"),
@@ -16,19 +54,25 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ListaYa</Text>
-      <Divider width={20} transparent />
-      <CardTask
-        title="Tarea 1"
-        description="Descripción de la tarea 1"
-        date="2021-10-10"
-      />
-      <CardTask
-        title="Tarea 2"
-        description="Descripción de la tarea 2"
-        date="2021-10-11"
-        completed
-      />
+      <View style={styles.appBar}>
+        <Text style={styles.title}>ListaYa</Text>
+        <AddIconButton
+          icon={"plus"}
+          onPress={() => console.log("Add-task")}
+          iconColor={"#130C1C"}
+          iconBackground={"#FCEEF1"}
+        />
+      </View>
+      <Divider height={10} />
+      {tasks.map((task) => (
+        <CardTask
+          key={task.id}
+          title={task.title}
+          description={task.description}
+          date={task.date}
+          completed={task.completed}
+        />
+      ))}
       <StatusBar style="auto" />
     </View>
   );
@@ -37,16 +81,20 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#130C1C",
     alignItems: "start",
     justifyContent: "start",
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 60,
+    paddingHorizontal: 30,
+    paddingTop: 80,
+  },
+  appBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   title: {
     fontSize: 36,
-    color: "#003566",
+    color: "#FCEEF1",
     fontFamily: "DMSans-Black",
   },
 });

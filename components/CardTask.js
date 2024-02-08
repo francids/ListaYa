@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 export default function CardTask({ title, description, date, completed }) {
@@ -9,13 +9,20 @@ export default function CardTask({ title, description, date, completed }) {
       <BouncyCheckbox
         onPress={setIsDone}
         isChecked={isDone}
-        fillColor="#003566"
+        fillColor="#FCEEF1"
+        iconStyle={{
+          borderColor: "#130C1C",
+          borderWidth: 5,
+        }}
+        iconImageStyle={{
+          tintColor: "#130C1C",
+        }}
         size={30}
         text={title}
         textStyle={{
           fontFamily: "DMSans-Regular",
           fontSize: 18,
-          color: "#003566",
+          color: "#FCEEF1",
         }}
       />
     </View>
@@ -24,6 +31,7 @@ export default function CardTask({ title, description, date, completed }) {
 
 const styles = StyleSheet.create({
   card: {
-    marginBottom: 20,
+    marginVertical: 5,
+    paddingVertical: 5,
   },
 });
